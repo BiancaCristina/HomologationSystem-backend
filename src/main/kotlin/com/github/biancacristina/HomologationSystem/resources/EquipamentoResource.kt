@@ -1,6 +1,7 @@
 package com.github.biancacristina.HomologationSystem.resources
 
 import com.github.biancacristina.HomologationSystem.domain.Equipamento
+import com.github.biancacristina.HomologationSystem.dto.EquipamentoDTO
 import com.github.biancacristina.HomologationSystem.services.EquipamentoService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -30,6 +31,14 @@ class EquipamentoResource {
         val uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.id).toUri()
 
         return ResponseEntity.created(uri).build()
+    }
+
+    @RequestMapping(value=["/{id}"], method= [RequestMethod.PUT])
+    fun update(@Valid @RequestBody objDTO: EquipamentoDTO,
+               @PathVariable id: Long): ResponseEntity<Unit> {
+        equipamentoService.update(objDTO, id)
+
+        return ResponseEntity.noContent().build()
     }
 
     @RequestMapping(value=["/{id}"], method= [RequestMethod.DELETE])

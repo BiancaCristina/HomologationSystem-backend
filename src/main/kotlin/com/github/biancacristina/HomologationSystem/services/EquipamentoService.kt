@@ -1,6 +1,7 @@
 package com.github.biancacristina.HomologationSystem.services
 
 import com.github.biancacristina.HomologationSystem.domain.Equipamento
+import com.github.biancacristina.HomologationSystem.dto.EquipamentoDTO
 import com.github.biancacristina.HomologationSystem.repositories.EquipamentoRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -20,6 +21,20 @@ class EquipamentoService {
         obj.id = 0
 
         return equipamentoRepository.save(obj)
+    }
+
+    fun update (objDTO: EquipamentoDTO,
+                id: Long): Equipamento {
+        var obj = this.findById(id)
+        this.updateData(objDTO, obj)
+        return equipamentoRepository.save(obj)
+    }
+
+    protected fun updateData(objDTO: EquipamentoDTO, obj: Equipamento) {
+        obj.nome = objDTO.nome?:obj.nome
+        obj.fabricante = objDTO.fabricante?:obj.fabricante
+        obj.descricao = objDTO.descricao?:obj.descricao
+        obj.dataUltimaEdicao = objDTO.dataUltimaEdicao
     }
 
     fun delete (id: Long) {
