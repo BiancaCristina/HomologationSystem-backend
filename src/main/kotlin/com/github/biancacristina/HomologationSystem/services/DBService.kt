@@ -20,8 +20,7 @@ class DBService {
                 "SSD 240GB",
                 "Kingston",
                 "Um disco SSD 240GB",
-                "Aprovado",
-                LocalDateTime.now())
+                "Aprovado")
 
         var eq2 = Equipamento(
                 0,
@@ -29,8 +28,7 @@ class DBService {
                 "Notebook Samsung X40 Expert",
                 "Samsung",
                 "Um notebook simples",
-                "Em andamento",
-                LocalDateTime.now())
+                "Em andamento")
 
         var eq3 = Equipamento(
                 0,
@@ -38,8 +36,7 @@ class DBService {
                 "Zenfone 4 Selfie",
                 "ASUS",
                 "Celular razoável",
-                "Recusado",
-                LocalDateTime.now())
+                "Recusado")
 
         equipamentoRepository.saveAll(Arrays.asList(eq1, eq2, eq3))
     }

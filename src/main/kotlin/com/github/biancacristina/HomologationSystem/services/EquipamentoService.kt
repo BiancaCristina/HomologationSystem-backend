@@ -15,4 +15,16 @@ class EquipamentoService {
         var obj = equipamentoRepository.findById(id).orElse(null)
         return obj
     }
+
+    fun insert (obj: Equipamento): Equipamento {
+        obj.id = 0
+
+        return equipamentoRepository.save(obj)
+    }
+
+    fun delete (id: Long) {
+        this.findById(id)
+        equipamentoRepository.deleteById(id)
+
+    }
 }
