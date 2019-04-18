@@ -14,6 +14,7 @@ data class Equipamento (
 
         var r12: Long,
         var fabricante: String,
+        var nome: String,
         var descricao: String,
         var status: String,
 
