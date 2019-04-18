@@ -3,6 +3,7 @@ package com.github.biancacristina.HomologationSystem.services
 import com.github.biancacristina.HomologationSystem.domain.Equipamento
 import com.github.biancacristina.HomologationSystem.dto.EquipamentoDTO
 import com.github.biancacristina.HomologationSystem.repositories.EquipamentoRepository
+import com.github.biancacristina.HomologationSystem.services.exceptions.ObjectNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -13,8 +14,11 @@ class EquipamentoService {
     private lateinit var equipamentoRepository: EquipamentoRepository
 
     fun findById (id: Long): Equipamento {
-        var obj = equipamentoRepository.findById(id).orElse(null)
-        return obj
+        var obj = equipamentoRepository.findById(id)
+
+        return obj.orElseThrow { ObjectNotFoundException(
+                "Objeto não encontrado! Id: " + id + " Tipo: " + Equipamento::class.qualifiedName
+        )}
     }
 
     fun insert (obj: Equipamento): Equipamento {
