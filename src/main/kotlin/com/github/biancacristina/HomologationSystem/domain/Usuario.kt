@@ -1,5 +1,6 @@
 package com.github.biancacristina.HomologationSystem.domain
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.github.biancacristina.HomologationSystem.domain.enums.Perfil
 import javax.persistence.*
 
@@ -20,6 +21,7 @@ data class Usuario(
         perfis.add(Perfil.USER.cod)
     }
 
+    @JsonIgnore
     fun getPerfisUsuario(): Set<Perfil?> {
         // Converte lista de inteiros em lista de perfis
         return perfis.map { x -> Perfil.toEnum(x) }.toSet()
