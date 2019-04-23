@@ -1,6 +1,7 @@
 package com.github.biancacristina.HomologationSystem.config
 
 import com.github.biancacristina.HomologationSystem.security.JWTAuthenticationFilter
+import com.github.biancacristina.HomologationSystem.security.JWTAuthorizationFilter
 import com.github.biancacristina.HomologationSystem.security.JWTUtil
 import com.github.biancacristina.HomologationSystem.services.CustomUserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.password.PasswordEncoder
 
 
@@ -29,6 +31,8 @@ class WebSecurityConfig(private val customUserDetailsService: CustomUserDetailsS
                 .formLogin().permitAll()
 
         http.addFilter(JWTAuthenticationFilter(authenticationManager(), jwtUtil))
+        http.addFilter(JWTAuthorizationFilter(authenticationManager(), jwtUtil, customUserDetailsService))
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
