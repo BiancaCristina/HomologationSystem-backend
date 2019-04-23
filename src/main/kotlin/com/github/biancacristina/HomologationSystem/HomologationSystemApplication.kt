@@ -1,5 +1,6 @@
 package com.github.biancacristina.HomologationSystem
 
+import com.github.biancacristina.HomologationSystem.config.PasswordEncoderConfig
 import com.github.biancacristina.HomologationSystem.domain.Equipamento
 import com.github.biancacristina.HomologationSystem.domain.Usuario
 import com.github.biancacristina.HomologationSystem.repositories.EquipamentoRepository
@@ -17,6 +18,9 @@ class HomologationSystemApplication: CommandLineRunner {
 
 	@Autowired
 	private lateinit var usuarioRepository: UsuarioRepository
+
+	@Autowired
+	private lateinit var encoder: PasswordEncoderConfig
 
 	override fun run(vararg args: String?) {
 		var eq1 = Equipamento(
@@ -45,9 +49,10 @@ class HomologationSystemApplication: CommandLineRunner {
 
 		equipamentoRepository.saveAll(Arrays.asList(eq1, eq2, eq3))
 
-		var u1 = Usuario(0, "bianca", "123")
+		var user_admin = Usuario(0, "bianca", encoder.passwordEncoderConfiguration().encode("123"))
+		var user_user = Usuario(0, "outro", encoder.passwordEncoderConfiguration().encode("456"))
 
-		usuarioRepository.save(u1)
+		usuarioRepository.saveAll(Arrays.asList(user_admin, user_user))
 	}
 
 }
