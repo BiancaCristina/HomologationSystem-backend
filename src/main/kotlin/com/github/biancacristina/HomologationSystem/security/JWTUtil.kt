@@ -9,7 +9,7 @@ import java.util.*
 @Component
 class JWTUtil {
     val secret = "SequenciaAssinarToken"
-    val expiration: Long = 8000000
+    val expiration: Long = 1000000000
 
     fun generateToken(username: String): String {
         return Jwts.builder()
