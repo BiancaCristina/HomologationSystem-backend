@@ -4,6 +4,7 @@ import com.github.biancacristina.HomologationSystem.config.PasswordEncoderConfig
 import com.github.biancacristina.HomologationSystem.domain.Equipamento
 import com.github.biancacristina.HomologationSystem.domain.Usuario
 import com.github.biancacristina.HomologationSystem.domain.enums.Perfil
+import com.github.biancacristina.HomologationSystem.domain.enums.Status
 import com.github.biancacristina.HomologationSystem.repositories.EquipamentoRepository
 import com.github.biancacristina.HomologationSystem.repositories.UsuarioRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,14 +24,14 @@ class DBService {
     @Autowired
     private lateinit var encoder: PasswordEncoderConfig
 
-    fun instantiateTestDataBase(): Unit {
+    fun instantiateTestDataBase() {
         var eq1 = Equipamento(
                 0,
                 10001,
                 "SSD 240GB",
                 "Kingston",
                 "Um disco SSD 240GB",
-                "Aprovado")
+                Status.APROVADO.status)
 
         var eq2 = Equipamento(
                 0,
@@ -38,7 +39,7 @@ class DBService {
                 "Notebook Samsung X40 Expert",
                 "Samsung",
                 "Um notebook simples",
-                "Em andamento")
+                Status.ANDAMENTO.status)
 
         var eq3 = Equipamento(
                 0,
@@ -46,7 +47,7 @@ class DBService {
                 "Zenfone 4 Selfie",
                 "ASUS",
                 "Celular razoável",
-                "Recusado")
+                Status.REPROVADO.status)
 
         equipamentoRepository.saveAll(Arrays.asList(eq1, eq2, eq3))
 
