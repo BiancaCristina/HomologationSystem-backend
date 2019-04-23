@@ -5,6 +5,9 @@ import com.github.biancacristina.HomologationSystem.dto.EquipamentoDTO
 import com.github.biancacristina.HomologationSystem.repositories.EquipamentoRepository
 import com.github.biancacristina.HomologationSystem.services.exceptions.ObjectNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 
 @Service
@@ -19,6 +22,25 @@ class EquipamentoService {
         return obj.orElseThrow { ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id + " Tipo: " + Equipamento::class.qualifiedName
         )}
+    }
+
+    fun findAllPage(
+        page: Int,
+        linesPerPage: Int,
+        direction: String,
+        orderBy: String
+    ): Page<Equipamento> {
+        var pageRequest: PageRequest? = null
+
+        if (direction == "DESC") {
+            pageRequest = PageRequest.of(page, linesPerPage, Sort.by(orderBy).descending())
+        }
+
+        else if (direction == "ASC") {
+            pageRequest = PageRequest.of(page, linesPerPage, Sort.by(orderBy).ascending())
+        }
+
+        return equipamentoRepository.findAll(pageRequest!!)
     }
 
     fun insert (obj: Equipamento): Equipamento {

@@ -4,10 +4,10 @@ import com.github.biancacristina.HomologationSystem.domain.Equipamento
 import com.github.biancacristina.HomologationSystem.dto.EquipamentoDTO
 import com.github.biancacristina.HomologationSystem.services.EquipamentoService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
-import java.time.LocalDateTime
 import javax.validation.Valid
 
 @RestController
@@ -21,6 +21,18 @@ class EquipamentoResource {
     fun find(@PathVariable id: Long): ResponseEntity<*> {
         var obj = equipamentoService.findById(id)
         return ResponseEntity.ok().body(obj)
+    }
+
+    @RequestMapping(value=["/page"], method=[RequestMethod.GET])
+    fun findAllPage(
+        @RequestParam(value="page", defaultValue= "0") page: Int,
+        @RequestParam(value="linesPerPage", defaultValue= "10") linesPerPage: Int,
+        @RequestParam(value="direction", defaultValue= "DESC") direction: String,
+        @RequestParam(value="orderBy", defaultValue= "dataUltimaEdicao") orderBy: String
+    ): ResponseEntity<Page<Equipamento>> {
+        var lista: Page<Equipamento> = equipamentoService.findAllPage(page, linesPerPage, direction, orderBy)
+
+        return ResponseEntity.ok().body(lista)
     }
 
     @RequestMapping(method=[RequestMethod.POST])

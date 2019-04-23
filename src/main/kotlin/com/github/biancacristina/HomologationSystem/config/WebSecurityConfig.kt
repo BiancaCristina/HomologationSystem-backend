@@ -5,6 +5,7 @@ import com.github.biancacristina.HomologationSystem.security.JWTAuthorizationFil
 import com.github.biancacristina.HomologationSystem.security.JWTUtil
 import com.github.biancacristina.HomologationSystem.services.CustomUserDetailsService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -25,7 +26,9 @@ class WebSecurityConfig(private val customUserDetailsService: CustomUserDetailsS
 
         http.csrf().disable()
         http.authorizeRequests()
-                .antMatchers("/equipamentos/*").authenticated()
+                .antMatchers(HttpMethod.GET,"/equipamentos/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/usuarios/**").authenticated()
+                .antMatchers(HttpMethod.POST, "equipamentos/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().permitAll()
