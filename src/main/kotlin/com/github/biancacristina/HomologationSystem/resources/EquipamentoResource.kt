@@ -67,6 +67,17 @@ class EquipamentoResource {
         return ResponseEntity.ok().body(listaPaginada)
     }
 
+    @RequestMapping(value=["/searchStatus"], method=[RequestMethod.GET])
+    fun findByStatus(
+            @RequestParam(value="page", defaultValue= "0") page: Int,
+            @RequestParam(value="linesPerPage", defaultValue= "10") linesPerPage: Int,
+            @RequestParam(value="status", defaultValue= "") status: String
+    ): ResponseEntity<Page<Equipamento>> {
+        var listaPaginada: Page<Equipamento> = equipamentoService.findByStatus(status, page, linesPerPage)
+
+        return ResponseEntity.ok().body(listaPaginada)
+    }
+
     @RequestMapping(value=["/page"], method=[RequestMethod.GET])
     fun findAllPage(
         @RequestParam(value="page", defaultValue= "0") page: Int,

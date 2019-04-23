@@ -12,4 +12,5 @@ interface EquipamentoRepository: JpaRepository<Equipamento,Long> {
     fun findByNomeContainingIgnoreCase(nome: String, pageable: Pageable): Page<Equipamento>
     fun findByFabricanteContainingIgnoreCase(fabricante: String, pageable: Pageable): Page<Equipamento>
     fun findByDescricaoContainingIgnoreCase(descricao: String, pageable: Pageable): Page<Equipamento>
+    fun findByStatus(status: String, pageable: Pageable): Page<Equipamento>
 }

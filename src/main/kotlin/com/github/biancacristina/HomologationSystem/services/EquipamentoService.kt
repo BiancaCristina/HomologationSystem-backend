@@ -63,6 +63,16 @@ class EquipamentoService {
         return equipamentoRepository.findByDescricaoContainingIgnoreCase(descricao, pageRequest)
     }
 
+    fun findByStatus(
+            status: String,
+            page: Int,
+            linesPerPage: Int
+    ): Page<Equipamento> {
+        var pageRequest = PageRequest.of(page, linesPerPage, Sort.by("dataUltimaEdicao"))
+
+        return equipamentoRepository.findByStatus(status, pageRequest)
+    }
+
     fun findAllPage(
         page: Int,
         linesPerPage: Int,
