@@ -23,6 +23,50 @@ class EquipamentoResource {
         return ResponseEntity.ok().body(obj)
     }
 
+    @RequestMapping(value=["/searchR12"], method=[RequestMethod.GET])
+    fun findByR12(
+        @RequestParam(value="page", defaultValue= "0") page: Int,
+        @RequestParam(value="linesPerPage", defaultValue= "10") linesPerPage: Int,
+        @RequestParam(value="r12", defaultValue="") r12: Long?
+    ): ResponseEntity<Page<Equipamento>> {
+        var listaPaginada: Page<Equipamento> = equipamentoService.findByR12(r12, page, linesPerPage)
+
+        return ResponseEntity.ok().body(listaPaginada)
+    }
+
+    @RequestMapping(value=["/searchNome"], method=[RequestMethod.GET])
+    fun findByNome(
+        @RequestParam(value="page", defaultValue= "0") page: Int,
+        @RequestParam(value="linesPerPage", defaultValue= "10") linesPerPage: Int,
+        @RequestParam(value="nome", defaultValue= "") nome: String
+    ): ResponseEntity<Page<Equipamento>> {
+        var listaPaginada: Page<Equipamento> = equipamentoService.findByNome(nome, page, linesPerPage)
+
+        return ResponseEntity.ok().body(listaPaginada)
+    }
+
+    @RequestMapping(value=["/searchFabricante"], method=[RequestMethod.GET])
+    fun findByFabricante(
+            @RequestParam(value="page", defaultValue= "0") page: Int,
+            @RequestParam(value="linesPerPage", defaultValue= "10") linesPerPage: Int,
+            @RequestParam(value="fabricante", defaultValue= "") fabricante: String
+    ): ResponseEntity<Page<Equipamento>> {
+        var listaPaginada: Page<Equipamento> = equipamentoService.findByFabricante(fabricante, page, linesPerPage)
+
+        return ResponseEntity.ok().body(listaPaginada)
+    }
+
+    @RequestMapping(value=["/searchDescricao"], method=[RequestMethod.GET])
+    fun findByDescricao(
+            @RequestParam(value="page", defaultValue= "0") page: Int,
+            @RequestParam(value="linesPerPage", defaultValue= "10") linesPerPage: Int,
+            @RequestParam(value="descricao", defaultValue= "") descricao: String
+    ): ResponseEntity<Page<Equipamento>> {
+        var listaPaginada: Page<Equipamento> = equipamentoService.findByDescricao(descricao, page, linesPerPage)
+
+        return ResponseEntity.ok().body(listaPaginada)
+    }
+
     @RequestMapping(value=["/page"], method=[RequestMethod.GET])
     fun findAllPage(
         @RequestParam(value="page", defaultValue= "0") page: Int,
@@ -30,9 +74,9 @@ class EquipamentoResource {
         @RequestParam(value="direction", defaultValue= "DESC") direction: String,
         @RequestParam(value="orderBy", defaultValue= "dataUltimaEdicao") orderBy: String
     ): ResponseEntity<Page<Equipamento>> {
-        var lista: Page<Equipamento> = equipamentoService.findAllPage(page, linesPerPage, direction, orderBy)
+        var listaPaginada: Page<Equipamento> = equipamentoService.findAllPage(page, linesPerPage, direction, orderBy)
 
-        return ResponseEntity.ok().body(lista)
+        return ResponseEntity.ok().body(listaPaginada)
     }
 
     @RequestMapping(method=[RequestMethod.POST])

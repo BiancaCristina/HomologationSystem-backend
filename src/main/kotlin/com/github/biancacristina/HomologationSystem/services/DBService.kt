@@ -3,6 +3,7 @@ package com.github.biancacristina.HomologationSystem.services
 import com.github.biancacristina.HomologationSystem.config.PasswordEncoderConfig
 import com.github.biancacristina.HomologationSystem.domain.Equipamento
 import com.github.biancacristina.HomologationSystem.domain.Usuario
+import com.github.biancacristina.HomologationSystem.domain.enums.Perfil
 import com.github.biancacristina.HomologationSystem.repositories.EquipamentoRepository
 import com.github.biancacristina.HomologationSystem.repositories.UsuarioRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -50,6 +51,8 @@ class DBService {
         equipamentoRepository.saveAll(Arrays.asList(eq1, eq2, eq3))
 
         var user_admin = Usuario(0, "bianca", encoder.passwordEncoderConfiguration().encode("123"))
+        user_admin.perfis.add(Perfil.ADMIN.nome)
+
         var user_user = Usuario(0, "outro", encoder.passwordEncoderConfiguration().encode("456"))
 
         usuarioRepository.saveAll(Arrays.asList(user_admin, user_user))

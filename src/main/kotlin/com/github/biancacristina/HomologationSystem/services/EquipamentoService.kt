@@ -24,6 +24,45 @@ class EquipamentoService {
         )}
     }
 
+    fun findByR12(
+        r12: Long?,
+        page: Int,
+        linesPerPage: Int): Page<Equipamento> {
+        var pageRequest = PageRequest.of(page, linesPerPage, Sort.by("dataUltimaEdicao"))
+
+        return equipamentoRepository.findByR12(r12, pageRequest)
+    }
+
+    fun findByNome(
+        nome: String,
+        page: Int,
+        linesPerPage: Int
+    ): Page<Equipamento> {
+        var pageRequest = PageRequest.of(page, linesPerPage, Sort.by("dataUltimaEdicao"))
+
+        return equipamentoRepository.findByNomeContainingIgnoreCase(nome, pageRequest)
+    }
+
+    fun findByFabricante(
+            fabricante: String,
+            page: Int,
+            linesPerPage: Int
+    ): Page<Equipamento> {
+        var pageRequest = PageRequest.of(page, linesPerPage, Sort.by("dataUltimaEdicao"))
+
+        return equipamentoRepository.findByFabricanteContainingIgnoreCase(fabricante, pageRequest)
+    }
+
+    fun findByDescricao(
+            descricao: String,
+            page: Int,
+            linesPerPage: Int
+    ): Page<Equipamento> {
+        var pageRequest = PageRequest.of(page, linesPerPage, Sort.by("dataUltimaEdicao"))
+
+        return equipamentoRepository.findByDescricaoContainingIgnoreCase(descricao, pageRequest)
+    }
+
     fun findAllPage(
         page: Int,
         linesPerPage: Int,
