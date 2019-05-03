@@ -3,6 +3,7 @@ package com.github.biancacristina.HomologationSystem.services
 import com.github.biancacristina.HomologationSystem.domain.Equipamento
 import com.github.biancacristina.HomologationSystem.dto.EquipamentoDTO
 import com.github.biancacristina.HomologationSystem.repositories.EquipamentoRepository
+import com.github.biancacristina.HomologationSystem.services.exceptions.FieldEmptyException
 import com.github.biancacristina.HomologationSystem.services.exceptions.ObjectNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
@@ -94,6 +95,9 @@ class EquipamentoService {
 
     fun insert (obj: Equipamento): Equipamento {
         obj.id = 0
+
+        if (obj.nome.length == 0) throw FieldEmptyException(
+                "Nome de um equipamento não deve ser vazio! " + Equipamento::class.qualifiedName)
 
         return equipamentoRepository.save(obj)
     }

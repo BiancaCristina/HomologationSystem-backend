@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class HomologationSystemApplication
 
 fun main(args: Array<String>) {
-	runApplication<HomologationSystemApplication>(*args)
+    runApplication<HomologationSystemApplication>(*args)
 }

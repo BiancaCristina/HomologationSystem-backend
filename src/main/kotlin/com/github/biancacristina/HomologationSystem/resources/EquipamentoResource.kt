@@ -17,12 +17,14 @@ class EquipamentoResource {
     @Autowired
     private lateinit var equipamentoService: EquipamentoService
 
+    @CrossOrigin("http://localhost:8081")
     @RequestMapping(value=["{id}"], method= [RequestMethod.GET])
     fun find(@PathVariable id: Long): ResponseEntity<*> {
         var obj = equipamentoService.findById(id)
         return ResponseEntity.ok().body(obj)
     }
 
+    @CrossOrigin("http://localhost:8081")
     @RequestMapping(value=["/searchR12"], method=[RequestMethod.GET])
     fun findByR12(
         @RequestParam(value="page", defaultValue= "0") page: Int,
@@ -34,6 +36,7 @@ class EquipamentoResource {
         return ResponseEntity.ok().body(listaPaginada)
     }
 
+    @CrossOrigin("http://localhost:8081")
     @RequestMapping(value=["/searchNome"], method=[RequestMethod.GET])
     fun findByNome(
         @RequestParam(value="page", defaultValue= "0") page: Int,
@@ -45,6 +48,7 @@ class EquipamentoResource {
         return ResponseEntity.ok().body(listaPaginada)
     }
 
+    @CrossOrigin("http://localhost:8081")
     @RequestMapping(value=["/searchFabricante"], method=[RequestMethod.GET])
     fun findByFabricante(
             @RequestParam(value="page", defaultValue= "0") page: Int,
@@ -56,6 +60,7 @@ class EquipamentoResource {
         return ResponseEntity.ok().body(listaPaginada)
     }
 
+    @CrossOrigin("http://localhost:8081")
     @RequestMapping(value=["/searchDescricao"], method=[RequestMethod.GET])
     fun findByDescricao(
             @RequestParam(value="page", defaultValue= "0") page: Int,
@@ -78,6 +83,7 @@ class EquipamentoResource {
         return ResponseEntity.ok().body(listaPaginada)
     }
 
+    @CrossOrigin("http://localhost:8081")
     @RequestMapping(value=["/page"], method=[RequestMethod.GET])
     fun findAllPage(
         @RequestParam(value="page", defaultValue= "0") page: Int,
@@ -90,8 +96,9 @@ class EquipamentoResource {
         return ResponseEntity.ok().body(listaPaginada)
     }
 
+    @CrossOrigin("http://localhost:8081")
     @RequestMapping(method=[RequestMethod.POST])
-    fun insert(@RequestBody obj: Equipamento): ResponseEntity<Unit> {
+    fun insert(@Valid @RequestBody obj: Equipamento): ResponseEntity<Unit> {
         var obj = equipamentoService.insert(obj)
 
         // Retorna a URI do objeto criado
@@ -100,6 +107,7 @@ class EquipamentoResource {
         return ResponseEntity.created(uri).build()
     }
 
+    @CrossOrigin("http://localhost:8081")
     @RequestMapping(value=["/{id}"], method= [RequestMethod.PUT])
     fun update(@Valid @RequestBody objDTO: EquipamentoDTO,
                @PathVariable id: Long): ResponseEntity<Unit> {
@@ -108,6 +116,7 @@ class EquipamentoResource {
         return ResponseEntity.noContent().build()
     }
 
+    @CrossOrigin("http://localhost:8081")
     @RequestMapping(value=["/{id}"], method= [RequestMethod.DELETE])
     fun delete(@PathVariable id: Long): ResponseEntity<Unit> {
         equipamentoService.delete(id)
