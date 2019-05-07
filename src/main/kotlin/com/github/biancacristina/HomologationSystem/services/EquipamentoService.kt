@@ -96,7 +96,10 @@ class EquipamentoService {
     fun insert (obj: Equipamento): Equipamento {
         obj.id = 0
 
-        if (obj.nome.length == 0) throw FieldEmptyException(
+        // Verifica se algum dos campos não está vazio
+        if (obj.nome.isEmpty() ||
+            obj.fabricante.isEmpty() ||
+            obj.descricao.isEmpty()) throw FieldEmptyException(
                 "Nome de um equipamento não deve ser vazio! " + Equipamento::class.qualifiedName)
 
         return equipamentoRepository.save(obj)

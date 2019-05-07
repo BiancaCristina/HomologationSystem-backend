@@ -49,7 +49,63 @@ class DBService {
                 "Celular razoável",
                 Status.REPROVADO.status)
 
-        equipamentoRepository.saveAll(Arrays.asList(eq1, eq2, eq3))
+        var eq4 = Equipamento(
+                0,
+                40004,
+                "Copo DOT2015",
+                "Algar",
+                "Copo plástico verde",
+                Status.APROVADO.status)
+
+        var eq5 = Equipamento(
+                0,
+                50005,
+                "Cadeira Gamer",
+                "Husky",
+                "Cadeira cara que faz a mesma coisa que qualquer outra",
+                Status.REPROVADO.status)
+
+        var eq6 = Equipamento(
+                0,
+                60006,
+                "Garrafa Térmica",
+                "TwistShake",
+                "Boa para esportes",
+                Status.ANDAMENTO.status)
+
+        var eq7 = Equipamento(
+                0,
+                70007,
+                "Cabo LAN",
+                "Desconhecido",
+                "Para conectar internet cabeada",
+                Status.REPROVADO.status)
+
+        var eq8 = Equipamento(
+                0,
+                80008,
+                "Mousepad Goliathus",
+                "Razer",
+                "Mousepad bem grande",
+                Status.ANDAMENTO.status)
+
+        var eq9 = Equipamento(
+                0,
+                90009,
+                "Black Stories",
+                "Moses",
+                "Jogo de adivinhação",
+                Status.APROVADO.status)
+
+        var eq10 = Equipamento(
+                0,
+                10000,
+                "Folha Sulfite A4",
+                "COPIMAX",
+                "Folha normal",
+                Status.REPROVADO.status)
+
+        equipamentoRepository.saveAll(Arrays.asList(eq1, eq2, eq3, eq4, eq5, eq6, eq7, eq8, eq9, eq10))
 
         var user_admin = Usuario(0, "bianca", encoder.passwordEncoderConfiguration().encode("123"))
         user_admin.perfis.add(Perfil.ADMIN.nome)
