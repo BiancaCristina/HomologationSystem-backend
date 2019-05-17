@@ -12,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.web.cors.CorsConfiguration
+
+
 
 
 @EnableWebSecurity
@@ -24,6 +27,7 @@ class WebSecurityConfig(private val customUserDetailsService: CustomUserDetailsS
 
     override fun configure(http: HttpSecurity) {
 
+        http.cors().configurationSource { request -> CorsConfiguration().applyPermitDefaultValues() }
         http.csrf().disable()
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/equipamentos/**").permitAll()

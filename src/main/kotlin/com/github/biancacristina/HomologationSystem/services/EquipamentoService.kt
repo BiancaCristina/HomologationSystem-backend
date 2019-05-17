@@ -74,6 +74,10 @@ class EquipamentoService {
         return equipamentoRepository.findByStatus(status, pageRequest)
     }
 
+    fun findAll(): List<Equipamento> {
+        return equipamentoRepository.findAll(Sort.by("dataUltimaEdicao"))
+    }
+
     fun findAllPage(
         page: Int,
         linesPerPage: Int,

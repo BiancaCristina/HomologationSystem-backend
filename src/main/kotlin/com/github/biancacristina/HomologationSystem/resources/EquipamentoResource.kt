@@ -84,6 +84,14 @@ class EquipamentoResource {
     }
 
     @CrossOrigin("http://localhost:8081")
+    @RequestMapping(method=[RequestMethod.GET])
+    fun findAll(): ResponseEntity<List<Equipamento>> {
+        var lista: List<Equipamento> = equipamentoService.findAll()
+
+        return ResponseEntity.ok().body(lista)
+    }
+
+    @CrossOrigin("http://localhost:8081")
     @RequestMapping(value=["/page"], method=[RequestMethod.GET])
     fun findAllPage(
         @RequestParam(value="page", defaultValue= "0") page: Int,

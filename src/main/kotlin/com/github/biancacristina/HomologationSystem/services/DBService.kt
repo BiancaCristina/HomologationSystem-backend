@@ -105,7 +105,15 @@ class DBService {
                 "Folha normal",
                 Status.REPROVADO.status)
 
-        equipamentoRepository.saveAll(Arrays.asList(eq1, eq2, eq3, eq4, eq5, eq6, eq7, eq8, eq9, eq10))
+        var eq11 = Equipamento(
+                0,
+                11000,
+                "Monitor de Computador",
+                "DELL",
+                "Frequência de 60hz",
+                Status.REPROVADO.status)
+
+        equipamentoRepository.saveAll(Arrays.asList(eq1, eq2, eq3, eq4, eq5, eq6, eq7, eq8, eq9, eq10, eq11))
 
         var user_admin = Usuario(0, "bianca", encoder.passwordEncoderConfiguration().encode("123"))
         user_admin.perfis.add(Perfil.ADMIN.nome)
