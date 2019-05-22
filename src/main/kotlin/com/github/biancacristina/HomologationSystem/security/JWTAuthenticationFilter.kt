@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import javax.servlet.ServletException
 import javax.servlet.FilterChain
+import javax.servlet.ServletResponse
+import javax.servlet.ServletRequest
+
+
 
 
 
@@ -49,7 +53,8 @@ class JWTAuthenticationFilter(
         val username = (auth.principal as CustomUserDetails).usuario.acesso
         val token = jwtUtil.generateToken(username)
         res.addHeader("Authorization", "Bearer $token")
+        res.setHeader("Access-Control-Expose-Headers", "Authorization, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
+                "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers")
     }
-
 }
 
