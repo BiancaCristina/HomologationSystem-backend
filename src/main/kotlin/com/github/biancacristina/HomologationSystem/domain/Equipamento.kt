@@ -17,6 +17,8 @@ data class Equipamento (
     var descricao: String,
     var status: String,
 
+    var linkImagem: String,
+
     @JsonFormat(pattern="dd/MM/yyyy HH:mm")
     var dataCriacao: LocalDateTime = LocalDateTime.now(),
 

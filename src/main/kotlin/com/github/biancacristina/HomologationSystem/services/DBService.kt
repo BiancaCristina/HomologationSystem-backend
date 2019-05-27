@@ -25,13 +25,17 @@ class DBService {
     private lateinit var encoder: PasswordEncoderConfig
 
     fun instantiateTestDataBase() {
+
+        var linkTeste = "https://www.google.com"
+
         var eq1 = Equipamento(
                 0,
                 10001,
                 "SSD 240GB",
                 "Kingston",
                 "Um disco SSD 240GB",
-                Status.APROVADO.status)
+                Status.APROVADO.status,
+                linkTeste)
 
         var eq2 = Equipamento(
                 0,
@@ -39,7 +43,8 @@ class DBService {
                 "Notebook Samsung X40 Expert",
                 "Samsung",
                 "Um notebook simples",
-                Status.ANDAMENTO.status)
+                Status.ANDAMENTO.status,
+                linkTeste)
 
         var eq3 = Equipamento(
                 0,
@@ -47,7 +52,8 @@ class DBService {
                 "Zenfone 4 Selfie",
                 "ASUS",
                 "Celular razoável",
-                Status.REPROVADO.status)
+                Status.REPROVADO.status,
+                linkTeste)
 
         var eq4 = Equipamento(
                 0,
@@ -55,7 +61,8 @@ class DBService {
                 "Copo DOT2015",
                 "Algar",
                 "Copo plástico verde",
-                Status.APROVADO.status)
+                Status.APROVADO.status,
+                linkTeste)
 
         var eq5 = Equipamento(
                 0,
@@ -63,7 +70,8 @@ class DBService {
                 "Cadeira Gamer",
                 "Husky",
                 "Cadeira cara que faz a mesma coisa que qualquer outra",
-                Status.REPROVADO.status)
+                Status.REPROVADO.status,
+                linkTeste)
 
         var eq6 = Equipamento(
                 0,
@@ -71,7 +79,8 @@ class DBService {
                 "Garrafa Térmica",
                 "TwistShake",
                 "Boa para esportes",
-                Status.ANDAMENTO.status)
+                Status.ANDAMENTO.status,
+                linkTeste)
 
         var eq7 = Equipamento(
                 0,
@@ -79,7 +88,8 @@ class DBService {
                 "Cabo LAN",
                 "Desconhecido",
                 "Para conectar internet cabeada",
-                Status.REPROVADO.status)
+                Status.REPROVADO.status,
+                linkTeste)
 
         var eq8 = Equipamento(
                 0,
@@ -87,7 +97,8 @@ class DBService {
                 "Mousepad Goliathus",
                 "Razer",
                 "Mousepad bem grande",
-                Status.ANDAMENTO.status)
+                Status.ANDAMENTO.status,
+                linkTeste)
 
         var eq9 = Equipamento(
                 0,
@@ -95,7 +106,8 @@ class DBService {
                 "Black Stories",
                 "Moses",
                 "Jogo de adivinhação",
-                Status.APROVADO.status)
+                Status.APROVADO.status,
+                linkTeste)
 
         var eq10 = Equipamento(
                 0,
@@ -103,7 +115,8 @@ class DBService {
                 "Folha Sulfite A4",
                 "COPIMAX",
                 "Folha normal",
-                Status.REPROVADO.status)
+                Status.REPROVADO.status,
+                linkTeste)
 
         var eq11 = Equipamento(
                 0,
@@ -111,7 +124,8 @@ class DBService {
                 "Monitor de Computador",
                 "DELL",
                 "Frequência de 60hz",
-                Status.REPROVADO.status)
+                Status.REPROVADO.status,
+                linkTeste)
 
         equipamentoRepository.saveAll(Arrays.asList(eq1, eq2, eq3, eq4, eq5, eq6, eq7, eq8, eq9, eq10, eq11))
 
