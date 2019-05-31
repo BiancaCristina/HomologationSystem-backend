@@ -117,10 +117,12 @@ class EquipamentoService {
     }
 
     protected fun updateData(objDTO: EquipamentoDTO, obj: Equipamento) {
+        obj.r12 = objDTO.r12?:obj.r12
         obj.nome = objDTO.nome?:obj.nome
         obj.fabricante = objDTO.fabricante?:obj.fabricante
         obj.descricao = objDTO.descricao?:obj.descricao
         obj.dataUltimaEdicao = objDTO.dataUltimaEdicao
+        obj.linkImagem = objDTO.linkImagem?:obj.linkImagem
     }
 
     fun delete (id: Long) {

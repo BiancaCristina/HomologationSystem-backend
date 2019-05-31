@@ -129,7 +129,7 @@ class DBService {
 
         equipamentoRepository.saveAll(Arrays.asList(eq1, eq2, eq3, eq4, eq5, eq6, eq7, eq8, eq9, eq10, eq11))
 
-        var user_admin = Usuario(0, "bianca", encoder.passwordEncoderConfiguration().encode("123"))
+        var user_admin = Usuario(0, "admin", encoder.passwordEncoderConfiguration().encode("123"))
         user_admin.perfis.add(Perfil.ADMIN.nome)
 
         var user_user = Usuario(0, "outro", encoder.passwordEncoderConfiguration().encode("456"))

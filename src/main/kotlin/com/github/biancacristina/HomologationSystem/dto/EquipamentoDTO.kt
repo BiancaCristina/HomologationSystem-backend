@@ -10,6 +10,7 @@ data class EquipamentoDTO (
     var fabricante: String?,
     var descricao: String?,
     var status: String?,
+    var linkImagem: String?,
 
     @JsonFormat(pattern="dd/MM/yyyy HH:mm")
     var dataUltimaEdicao: LocalDateTime = LocalDateTime.now()
